@@ -13,7 +13,7 @@ function Square({value, onSquareClick}) {
    );
 }
 
- function Board() {
+ function Board({xIsNext, squares, onPLay}) {
   // const [squares,setSquares] = useState(Array(9).fill(null));
   // const [xIsNext, setXIsNext] = useState(true);
 
@@ -24,8 +24,6 @@ function Square({value, onSquareClick}) {
     const nextSquares = squares.slice();
   
     nextSquares[i] = xIsNext ? 'X' : 'O';
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
   }
 
   const winner = calculateWinner(squares);
@@ -60,13 +58,15 @@ function Square({value, onSquareClick}) {
   //   [null,null,null,null,null,null,null,null,null], 
   //   ['X',null,null,null,null,null,null,null,null], 
   // ]
-  const [history, setHistory] = useState([Array(9).fill(null)])
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
 
+  function handlePlay() {}
 
   return (
     <div className='game'>
       <div className="game-board">
-        <Board />
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className="game-info">
         <ol>{/* TODO */}</ol>
